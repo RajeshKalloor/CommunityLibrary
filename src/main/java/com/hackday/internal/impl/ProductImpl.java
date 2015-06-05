@@ -1,8 +1,8 @@
-package com.awesome.internal.impl;
+package com.hackday.internal.impl;
 
-import com.awesome.database.DbConnection;
-import com.awesome.references.ConfigReferences;
-import com.awesome.structures.Product;
+import com.hackday.database.DbConnection;
+import com.hackday.references.ConfigReferences;
+import com.hackday.structures.Product;
 import com.mysql.jdbc.Connection;
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -11,7 +11,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sankeerth.reddy on 05/06/15.

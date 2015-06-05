@@ -1,7 +1,7 @@
 package sample;
 
-import com.awesome.database.DbConnection;
-import com.awesome.references.ConfigReferences;
+import com.hackday.database.DbConnection;
+import com.hackday.references.ConfigReferences;
 import com.mysql.jdbc.Connection;
 
 import java.sql.ResultSet;

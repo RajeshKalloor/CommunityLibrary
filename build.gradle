@@ -10,7 +10,7 @@ version = '1.0'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 // The main class of the application
-mainClassName = 'com.awesome.flipbid.bootstrap.BootStrapper'
+mainClassName = 'com.hackday.bookmybook.bootstrap.BootStrapper'
 
 // Add Gradle OneJarPlugin, see https:github.com/rholder/gradle-one-jar
 buildscript {

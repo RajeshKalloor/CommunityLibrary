@@ -1,4 +1,4 @@
-package com.awesome.flipbid.config;
+package com.hackday.bookmybook.config;
 
 import lombok.Data;
 import javax.validation.constraints.NotNull;

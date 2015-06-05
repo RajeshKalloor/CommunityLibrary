@@ -1,6 +1,6 @@
-package com.awesome.database;
+package com.hackday.database;
 
-import com.awesome.references.ConfigReferences;
+import com.hackday.references.ConfigReferences;
 import com.sun.rowset.CachedRowSetImpl;
 
 import javax.sql.rowset.CachedRowSet;

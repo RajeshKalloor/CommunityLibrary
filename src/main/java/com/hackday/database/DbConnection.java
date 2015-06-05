@@ -1,4 +1,4 @@
-package com.awesome.database;
+package com.hackday.database;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;

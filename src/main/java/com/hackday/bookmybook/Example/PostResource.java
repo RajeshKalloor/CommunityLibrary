@@ -1,6 +1,6 @@
-package com.awesome.flipbid.Example;
+package com.hackday.bookmybook.Example;
 
-import com.awesome.flipbid.config.MessagesConfiguration;
+import com.hackday.database.DatabaseHelper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,28 +9,17 @@ import javax.ws.rs.PathParam;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by sankeerth.reddy on 04/06/15.
  */
-
-@Path(value = "/hello")
-public class HelloResource {
-
-    private final MessagesConfiguration conf;
-
-    public HelloResource(MessagesConfiguration conf) {
-        this.conf = conf;
-    }
-
-    @GET
-    public String sayHello() {
-        return conf.getHelloRajesh();
-    }
-
+@Path("/{id}")
+public class PostResource {
     @POST
-    @Path("/{id}")
-    public String writeIntoAFile(String body, @PathParam("id") long id) throws IOException {
+    public String writeIntoAFile(String body, @PathParam("id") long id) throws IOException, SQLException {
+        DatabaseHelper databaseHelper = new DatabaseHelper();
+        String sqlQuery = "SELECT id FROM Test where ";
         String response = "";
         System.out.println("ID : " + id);
         System.out.println("Body : " + body);
@@ -47,9 +36,10 @@ public class HelloResource {
                 file.createNewFile();
             }
 
+
             // get the content in bytes
             byte[] contentInBytes = body.getBytes();
-
+            databaseHelper.executeQuery(sqlQuery);
             fop.write(contentInBytes);
             fop.flush();
             fop.close();
@@ -70,5 +60,8 @@ public class HelloResource {
         }
     }
 
+    @GET
+    public String test(@PathParam("id") long id) {
+        return "This is the response : " + id ;
+    }
 }
-

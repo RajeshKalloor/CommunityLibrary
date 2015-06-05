@@ -1,7 +1,7 @@
-package com.awesome.internal.resources;
+package com.hackday.internal.resources;
 
-import com.awesome.internal.impl.ProductImpl;
-import com.awesome.structures.Product;
+import com.hackday.internal.impl.ProductImpl;
+import com.hackday.structures.Product;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

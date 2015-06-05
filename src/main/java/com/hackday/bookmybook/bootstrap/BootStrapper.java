@@ -1,10 +1,10 @@
-package com.awesome.flipbid.bootstrap;
+package com.hackday.bookmybook.bootstrap;
 
-import com.awesome.flipbid.Example.HelloResource;
-import com.awesome.flipbid.Example.PostResource;
-import com.awesome.flipbid.config.ServiceConfiguration;
-import com.awesome.internal.resources.GetAllProducts;
-import com.awesome.internal.resources.GetProduct;
+import com.hackday.bookmybook.Example.HelloResource;
+import com.hackday.bookmybook.Example.PostResource;
+import com.hackday.bookmybook.config.ServiceConfiguration;
+import com.hackday.internal.resources.GetAllProducts;
+import com.hackday.internal.resources.GetProduct;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;

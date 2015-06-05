@@ -1,4 +1,4 @@
-package com.awesome.flipbid.config;
+package com.hackday.bookmybook.config;
 
 import com.yammer.dropwizard.config.Configuration;
 import lombok.Data;
