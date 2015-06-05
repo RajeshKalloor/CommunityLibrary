@@ -1,5 +1,6 @@
 package com.hackday.database;
 
+import com.hackday.bookmybook.constants.BookConstants;
 import com.hackday.references.ConfigReferences;
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -11,12 +12,12 @@ import java.sql.*;
  */
 public class DatabaseHelper {
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = ConfigReferences.DatabaseColumns.jdbc_driver;
-    static final String DB_URL = ConfigReferences.DatabaseColumns.dbURL;
+    static final String JDBC_DRIVER = BookConstants.jdbc_driver;
+    static final String DB_URL = BookConstants.dbURL;
 
     //  Database credentials
-    static final String USER = ConfigReferences.DatabaseColumns.userName;
-    static final String PASS = ConfigReferences.DatabaseColumns.password;
+    static final String USER = BookConstants.userName;
+    static final String PASS = BookConstants.password;
 
     public DatabaseHelper() {
     }

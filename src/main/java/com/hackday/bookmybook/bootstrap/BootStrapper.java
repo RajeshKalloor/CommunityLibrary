@@ -1,10 +1,11 @@
 package com.hackday.bookmybook.bootstrap;
 
+import com.hackday.bookmybook.Example.BookResource;
 import com.hackday.bookmybook.Example.HelloResource;
 import com.hackday.bookmybook.Example.PostResource;
+import com.hackday.bookmybook.Example.UserResource;
 import com.hackday.bookmybook.config.ServiceConfiguration;
-import com.hackday.internal.resources.GetAllProducts;
-import com.hackday.internal.resources.GetProduct;
+
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
@@ -26,9 +27,12 @@ public class BootStrapper extends Service<ServiceConfiguration> {
     public void run(ServiceConfiguration conf, Environment env) throws Exception {
         // we will add resource classes here
         env.addResource(new HelloResource(conf.getMessages()));
-        env.addResource(new PostResource());
-        env.addResource(new GetAllProducts());
-        env.addResource(new GetProduct());
+//        env.addResource(new PostResource());
+//        env.addResource(new GetAllProducts());
+//        env.addResource(new GetProduct());
+
+        env.addResource(new BookResource());
+        env.addResource(new UserResource());
 
     }
 
