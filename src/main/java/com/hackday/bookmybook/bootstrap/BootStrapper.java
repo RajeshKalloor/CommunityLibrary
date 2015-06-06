@@ -9,6 +9,7 @@ import com.hackday.bookmybook.config.ServiceConfiguration;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
+import com.hackday.bookmybook.Example.UserResource;
 
 /**
  * Created by sankeerth.reddy on 04/06/15.
