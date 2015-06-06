@@ -9,5 +9,5 @@ public class BookConstants {
     public static final String userName = "root";
     public static final String password = "";
     public static final String jdbc_driver = "com.mysql.jdbc.Driver";
-    public static final String dbURL = "jdbc:mysql://localhost/"+database;
+    public static final String dbURL = "jdbc:mysql://172.20.192.102/"+database;
 }

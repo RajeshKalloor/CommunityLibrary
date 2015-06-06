@@ -12,8 +12,8 @@ import java.sql.*;
  */
 public class DatabaseHelper {
     // JDBC driver name and database URL
-    static final String JDBC_DRIVER = BookConstants.jdbc_driver;
-    static final String DB_URL = BookConstants.dbURL;
+    static final String JDBC_DRIVER = ConfigReferences.DatabaseColumns.jdbc_driver;
+    static final String DB_URL = ConfigReferences.DatabaseColumns.dbURL;
 
     //  Database credentials
     static final String USER = BookConstants.userName;
