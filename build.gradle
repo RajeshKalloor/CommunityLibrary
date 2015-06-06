@@ -3,8 +3,8 @@ apply plugin: 'gradle-one-jar'
 apply plugin: 'application'
 
 // Use Java 8 by default
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 version = '1.0'
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

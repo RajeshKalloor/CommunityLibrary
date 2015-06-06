@@ -1,5 +1,6 @@
 package com.hackday.database;
 
+import com.hackday.bookmybook.constants.BookConstants;
 import com.hackday.references.ConfigReferences;
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -15,8 +16,8 @@ public class DatabaseHelper {
     static final String DB_URL = ConfigReferences.DatabaseColumns.dbURL;
 
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "";
+    static final String USER = BookConstants.userName;
+    static final String PASS = BookConstants.password;
 
     public DatabaseHelper() {
     }
