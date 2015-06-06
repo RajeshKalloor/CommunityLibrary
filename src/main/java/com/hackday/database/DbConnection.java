@@ -24,6 +24,13 @@ public class DbConnection {
         this.className = "com.mysql.jdbc.Driver";
     }
 
+    public DbConnection(){
+        this.username = "root";
+        this.password = "";
+        this.url = "jdbc:mysql://172.20.192.102/community_library";
+        this.className = "com.mysql.jdbc.Driver";
+    }
+
     public  Connection establishConnection(){
 
         Connection conn = null;
@@ -49,6 +56,7 @@ public class DbConnection {
         Statement stmt = null;
         ResultSet rs = null;
         stmt = (Statement) connection.createStatement();
+        System.out.println("Query-->"+query) ;
         rs = (ResultSet) stmt.executeQuery(query);
         return rs;
     }

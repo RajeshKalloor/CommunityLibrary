@@ -15,8 +15,8 @@ public class DatabaseHelper {
     static final String DB_URL = ConfigReferences.DatabaseColumns.dbURL;
 
     //  Database credentials
-    static final String USER = ConfigReferences.DatabaseColumns.userName;
-    static final String PASS = ConfigReferences.DatabaseColumns.password;
+    static final String USER = "root";
+    static final String PASS = "";
 
     public DatabaseHelper() {
     }
