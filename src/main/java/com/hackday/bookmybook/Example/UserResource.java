@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.hackday.structures.CreateUser;
 
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -30,7 +31,9 @@ public class UserResource {
         if(userActions.validateLogin(login)) {
             //Session session=new Session();
             System.out.println("did match");
-            return Response.ok().build();
+            HashMap map = newHashMap();
+            map.put("user_id", login.getUser_id());
+            return Response.status(Response.Status.OK).entity(map).build();
         }
         else
         {
@@ -43,6 +46,29 @@ public class UserResource {
 
         }
 
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(CreateUser createUser) {
+        UserActions userActions=new UserActions();
+        //userActions.addUser(createUser);
+        if(userActions.addUser(createUser)) {
+            //Session session=new Session();
+            System.out.println("user added successfully");
+            HashMap map = newHashMap();
+            map.put("user_id", createUser.getUser_id());
+            return Response.status(Response.Status.OK).entity(map).build();
+        }
+        else
+        {
+            HashMap map = newHashMap();
+            map.put("message", "user exists");
+            System.out.println("did not match");
+            return Response.status(Response.Status.BAD_REQUEST).entity(map).build();
+
+        }
+
+    }
 
 
     /*

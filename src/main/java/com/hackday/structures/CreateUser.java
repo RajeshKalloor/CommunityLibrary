@@ -1,10 +1,11 @@
 package com.hackday.structures;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import lombok.Data;
 /**
  * Created by siba.sethy on 6/6/15.
  */
+@Data
 public class CreateUser {
     @JsonProperty("user_id")
     private String user_id;

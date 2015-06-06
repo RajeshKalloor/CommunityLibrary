@@ -2,6 +2,7 @@ package com.hackday.internal.impl;
 
 import com.hackday.database.DatabaseHelper;
 import com.hackday.database.DbConnection;
+import com.hackday.structures.CreateUser;
 import com.hackday.structures.LoginInDetail;
 import com.mysql.jdbc.Connection;
 
@@ -28,7 +29,7 @@ public class UserActions {
             }
         if (num>0)
             flag= true;
-
+            dbConnection.closeConnection(conn);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,8 +37,9 @@ public class UserActions {
         return flag;
     }
 
-    public boolean addUser(LoginInDetail loginInDetail) {
-        String query = "select count(*) as count from " + userTable + " where user_id= '" + loginInDetail.getUser_id()+"' and password='"+loginInDetail.getPassword()+"';";
+    public boolean addUser(CreateUser createUser) {
+        String query = "select count(*) as count from " + userTable + " where user_id= '" + createUser.getUser_id()+"' ;";
+        String updateQuery="insert into users (user_id, name,pincode, location, address, mobile_no, password) values ('" + createUser.getUser_id()+"','"+createUser.getName()+"','"+createUser.getPincode()+"','"+createUser.getLocation()+"','"+createUser.getAddress()+"','"+createUser.getMobile_no()+"','"+createUser.getPassword()+"');";
         boolean flag=false;
         DbConnection dbConnection = new DbConnection();
         Connection conn = dbConnection.establishConnection();
@@ -47,13 +49,24 @@ public class UserActions {
             while (rs.next()) {
                 num = rs.getInt("count");
 
+
             }
-            if (num>0)
-                flag= true;
+            if (num>0) {
+                flag = false;
+            }
+            else
+            {
+                 System.out.println("update query-->"+updateQuery);
+                 dbConnection.executeUpdate(conn,updateQuery);
+                flag=true;
+            }
+            dbConnection.closeConnection(conn);
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
+
         return flag;
     }
 
