@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by rajesh.kalloor on 06/06/15.
@@ -27,9 +28,13 @@ public class BookResource {
 
     //API to add a new book
 
-    @GET
-    public void checking() throws IOException {
-        System.out.println("checkkk ::: ");
+    @POST
+    @Path("/search")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+    public List<BookDetails> searchBook(String book) throws IOException, SQLException{
+        return new BookOperations().searchBook(book);
+
     }
 
     @POST
@@ -44,4 +49,13 @@ public class BookResource {
         System.out.println("afftteerrr ::: ");
 
     }
+
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void getBookDetails() throws IOException {
+
+    }
+
 }

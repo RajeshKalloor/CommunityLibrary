@@ -6,7 +6,10 @@ import com.hackday.references.ConfigReferences;
 import com.hackday.structures.BookDetails;
 import com.mysql.jdbc.Connection;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rajesh.kalloor on 06/06/15.
@@ -41,5 +44,28 @@ public class BookOperations {
 //            System.out.println(result.getString("id"));
 //        }
         dbConnection.closeConnection(conn);
+    }
+
+    public List<BookDetails> searchBook(String text) throws SQLException {
+
+        List<BookDetails> bookDetails = new ArrayList<BookDetails>();
+        String searchQuery = "select * from books where title LIKE '%" +text+ "%'";
+
+        Integer index = 0;
+
+        Connection conn = dbConnection.establishConnection();
+        ResultSet rs = dbConnection.executeQuery(conn, searchQuery);
+        while(rs.next()){
+            BookDetails book = new BookDetails();
+            book.setBook_id(rs.getInt("id"));
+            book.setBook_title(rs.getString("title"));
+            book.setCategory(rs.getString("category"));
+            book.setOwner(rs.getString("owner"));
+            book.setStatus(rs.getString("status"));
+            bookDetails.add(book);
+            //index++;
+        }
+
+        return bookDetails;
     }
 }
