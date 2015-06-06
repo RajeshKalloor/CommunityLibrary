@@ -1,11 +1,15 @@
 package com.hackday.bookmybook.Example;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hackday.internal.impl.BookOperations;
 import com.hackday.structures.BookDetails;
+import com.hackday.structures.Books;
 
+import javax.validation.constraints.Null;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,9 +34,14 @@ public class BookResource {
 
     @POST
     @Path("/search")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Consumes(MediaType.APPLICATION_JSON)
-    public List<BookDetails> searchBook(String book) throws IOException, SQLException{
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Books searchBook(JsonNode search) throws IOException, SQLException{
+        //ObjectMapper mapper = new ObjectMapper();
+        String book = search.get("query").asText();
+
+        System.out.println("BOOK IS ::: " +book);
+
         return new BookOperations().searchBook(book);
 
     }
@@ -46,16 +55,48 @@ public class BookResource {
 
         System.out.println("body is ::: " +body);
         new BookOperations().addBookToDB(body);
+
         System.out.println("afftteerrr ::: ");
 
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/{book_id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public void getBookDetails() throws IOException {
+    public Response getBookDetails(@PathParam("book_id") Integer book_id ) throws IOException, SQLException {
+        //return new BookOperations().getBookDetails(book_id);
+//        try{
+//            BookDetails response = new BookOperations().getBookDetails(book_id);
+//            Response.ok().entity(response).build();
+//        }
+//        catch (SQLException e){
+//            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+//            //Response.Status.BAD_REQUEST
+//        }
+//        BookDetails response = new BookOperations().getBookDetails(book_id);
+
+        BookDetails bookDetails = new BookOperations().getBookDetails(book_id);
+
+        if (bookDetails.getBook_id() == 0) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        else{
+            return Response.ok().status(200).entity(bookDetails).build();
+        }
 
     }
+
+    @POST
+    @Path("/{book_id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void BookABook(@PathParam("book_id") Integer book_id ) throws IOException, SQLException {
+        new BookOperations().bookABook(book_id);
+    }
+
+//    @POST
+//    @Path("/cancel")
+
 
 }

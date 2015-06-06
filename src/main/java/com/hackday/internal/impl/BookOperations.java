@@ -4,6 +4,7 @@ import com.hackday.bookmybook.constants.BookConstants;
 import com.hackday.database.DbConnection;
 import com.hackday.references.ConfigReferences;
 import com.hackday.structures.BookDetails;
+import com.hackday.structures.Books;
 import com.mysql.jdbc.Connection;
 
 import java.sql.ResultSet;
@@ -27,6 +28,7 @@ public class BookOperations {
         String category = book.getCategory();
         String owner = book.getOwner();
         String status = "AVAILABLE";
+        String current_user = book.getOwner();
 
         System.out.println("title is ::: " +title);
         System.out.println("category is ::: " +category);
@@ -36,7 +38,9 @@ public class BookOperations {
 
         System.out.println("DB Conn ::: ");
 
+        //String insertQuery = "insert into books (title, category, owner, status, current_user) values (\"" +title+ "\", \"" +category+ "\", \"" +owner+ "\", \"" +status+ "\", \"" +current_user+ "\")";
         String insertQuery = "insert into books (title, category, owner, status) values (\"" +title+ "\", \"" +category+ "\", \"" +owner+ "\", \"" +status+ "\")";
+        System.out.println("INSERT QUERY ::: " +insertQuery);
 
         Connection conn = dbConnection.establishConnection();
         dbConnection.executeUpdate(conn, insertQuery);
@@ -46,7 +50,9 @@ public class BookOperations {
         dbConnection.closeConnection(conn);
     }
 
-    public List<BookDetails> searchBook(String text) throws SQLException {
+    public Books searchBook(String text) throws SQLException {
+
+        Books books = new Books();
 
         List<BookDetails> bookDetails = new ArrayList<BookDetails>();
         String searchQuery = "select * from books where title LIKE '%" +text+ "%'";
@@ -63,9 +69,46 @@ public class BookOperations {
             book.setOwner(rs.getString("owner"));
             book.setStatus(rs.getString("status"));
             bookDetails.add(book);
-            //index++;
+            index++;
         }
 
-        return bookDetails;
+        dbConnection.closeConnection(conn);
+
+        books.setBooks(bookDetails);
+        books.setCount(index);
+        return books;
+    }
+
+    public BookDetails getBookDetails(Integer id) throws SQLException{
+
+        String getBookQuery = "select * from books where id=" +id ;
+
+        Connection conn = dbConnection.establishConnection();
+        ResultSet rs = dbConnection.executeQuery(conn, getBookQuery);
+
+        BookDetails book = new BookDetails();
+
+        while(rs.next()) {
+            book.setBook_id(rs.getInt("id"));
+            book.setBook_title(rs.getString("title"));
+            book.setCategory(rs.getString("category"));
+            book.setOwner(rs.getString("owner"));
+            book.setStatus(rs.getString("status"));
+        }
+
+        dbConnection.closeConnection(conn);
+        return book;
+    }
+
+    public void bookABook(Integer id) throws SQLException {
+
+        String bookABookQuery = "update books set status='BOOKED' where status='AVAILABLE' and id='" +id+ "'";
+        //String updateUserQuery = "update books set current_user=" +user+ "where id='" +id+ "'";
+
+        Connection conn = dbConnection.establishConnection();
+        dbConnection.executeUpdate(conn, bookABookQuery);
+
+        dbConnection.closeConnection(conn);
+
     }
 }
